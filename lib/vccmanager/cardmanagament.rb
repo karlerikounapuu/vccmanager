@@ -166,10 +166,3 @@ end
 #generateVCC('72178c75-87a8-4ec9-b82a-390582be0173', '7a5eb9a1-ae55-4f88-8791-aa254130c808')
 #listVCC('72178c75-87a8-4ec9-b82a-390582be0173')
 #viewVCC('de6bc4f1-9149-4c01-80ef-e2d5594f15e5')
-
-#puts "Your credentials, please."
-#puts "Username:"
-#user = gets
-#puts "Hello" + user
-
-listUsers
