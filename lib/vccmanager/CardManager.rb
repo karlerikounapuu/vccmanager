@@ -1,9 +1,10 @@
+class CardManager
 
 require 'net/http'
 require 'uri'
 require 'json'
 
-def generateVCC(uid, pid)
+def self.generateVCC(uid, pid)
 
     #Generates new Virtual Credit Card for provided user
 
@@ -45,7 +46,7 @@ def generateVCC(uid, pid)
 
 end
 
-def listVCC(uid)
+def self.listVCC(uid)
 
     #Lists all generated virtual credit cards for given user
 
@@ -89,7 +90,7 @@ def listVCC(uid)
 
 end
 
-def viewVCC(cid)
+def self.viewVCC(cid)
 
     #Shows data for chosen card
 
@@ -126,43 +127,8 @@ def viewVCC(cid)
     puts '---------------------'
 end
 
-def listUsers
-
-    #Shows data for chosen card
-
-    #cid: existing card token
-
-    uri = URI.parse("https://shared-sandbox-api.marqeta.com/v3/users")
-    request = Net::HTTP::Get.new(uri)
-    request.basic_auth("user5281481981491", "6f9acd4c-a6ac-4fe1-abc4-3e405003be5c")
-    request.content_type = "application/json"
-
-    req_options = {
-    use_ssl: uri.scheme == "https",
-    }
-
-
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-    http.request(request)
-    end
-
-    #debug only
-    puts(response.body)
-
-    #data = JSON.parse(response.body)
-    #card_number = data.fetch('pan')
-    #card_expiry = data.fetch('expiration')
-    #card_last = data.fetch('last_four')
-    #card_vcc = data.fetch('cvv_number')
-    #card_status = data.fetch('state')
-
-    #puts '---------------------'
-    #puts "Card number: #{card_number}"
-    #puts "Expiry: #{card_expiry}"
-    #puts "VCC code: #{card_vcc}"
-    #puts "Card status: #{card_status}"
-    #puts '---------------------'
 end
 #generateVCC('72178c75-87a8-4ec9-b82a-390582be0173', '7a5eb9a1-ae55-4f88-8791-aa254130c808')
 #listVCC('72178c75-87a8-4ec9-b82a-390582be0173')
 #viewVCC('de6bc4f1-9149-4c01-80ef-e2d5594f15e5')
+#CardManager.listUsers
