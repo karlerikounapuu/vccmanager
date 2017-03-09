@@ -1,6 +1,6 @@
 require './CardManager'
 require './Accounting'
 
-puts "fagget"
+puts "main logic gets added to here soon :)"
 
 Accounting.listUsers
