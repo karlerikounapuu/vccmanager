@@ -1,4 +1,4 @@
-class accounting
+class Accounting
 
 require 'net/http'
 require 'uri'

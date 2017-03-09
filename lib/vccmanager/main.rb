@@ -1,6 +1,6 @@
-require './card_manager'
-require './accounting'
+require './CardManager'
+require './Accounting'
 
-puts 'Main logging is going to appear here soon :)'
+puts "main logic gets added to here soon :)"
 
 Accounting.listUsers
