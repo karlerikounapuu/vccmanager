@@ -1,4 +1,4 @@
-require "vccmanager/version"
+require 'vccmanager/version'
 
 module Vccmanager
   # Your code goes here...
