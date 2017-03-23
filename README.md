@@ -8,7 +8,7 @@ At the moment Vccmanager is capable of generating new virtual credit cards, list
 This gem requires net/http, uri, json and colorize to work. 
 
 <h2>How to launch it?</h2>
-"bundler exec ruby vccmanager.rb", which isn't really appropiate way (yet) but hey, it works.
+"bundler exec ruby lib/vccmanager.rb", which isn't really appropiate way (yet) but hey, it works. Going to make this right soon.
 
 <h2>Should I use it?</h2>
 Absolutely not. It's full of vulnerabilities, has no real functions and requires contract with Marqeta to actually put this to work.
