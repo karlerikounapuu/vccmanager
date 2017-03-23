@@ -1,3 +1,5 @@
+module Vccmanager
+
 class CardManager
   require 'net/http'
   require 'uri'
@@ -37,6 +39,7 @@ class CardManager
     card_vcc = data.fetch('cvv_number')
     card_status = data.fetch('state') + ' (' + data.fetch('state_reason') + ')'
 
+    puts "New card generated!"
     puts "Card number: #{card_number}"
     puts "Expiry: #{card_expiry}"
     puts "VCC code: #{card_vcc}"
@@ -123,6 +126,7 @@ class CardManager
     puts "Card status: #{card_status}"
     puts '---------------------'
   end
+end
 end
 # CardManager.generate_vcc('72178c75-87a8-4ec9-b82a-390582be0173', '7a5eb9a1-ae55-4f88-8791-aa254130c808')
 # CardManager.list_vcc('72178c75-87a8-4ec9-b82a-390582be0173')
