@@ -25,7 +25,11 @@ module Vccmanager
 
   case option
   when "1"
-  	puts "Chosen option is 1"
+  	puts "\nTo generate a new virtual card, we need to know your preferred card product token. Please provide it below."
+  	puts "Card product token:"
+  	pid = gets.chomp
+  	puts "Retrieving information about card product #{pid}..."
+  	CardManager.generate_vcc(uid, pid)
   when "2"
   	puts "Chosen option is 2"
   when "3"

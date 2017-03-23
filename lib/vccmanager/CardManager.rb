@@ -30,8 +30,8 @@ class CardManager
       http.request(request)
     end
 
-    puts(response.body)
-
+     #puts(response.body)
+    begin
     data = JSON.parse(response.body)
     puts '---------------------'
     card_number = data.fetch('pan')
@@ -44,6 +44,12 @@ class CardManager
     puts "Expiry: #{card_expiry}"
     puts "VCC code: #{card_vcc}"
     puts "Card status: #{card_status}"
+    rescue
+      # puts response.body
+      error = (JSON.parse(response.body)).fetch('error_message')
+
+      puts "Failed to generate card. (#{error})"
+    end
   end
 
   def self.list_vcc(uid)
@@ -111,7 +117,7 @@ class CardManager
     end
 
     # debug only
-    puts(response.body)
+    # puts(response.body)
 
     data = JSON.parse(response.body)
     card_number = data.fetch('pan')
@@ -126,8 +132,29 @@ class CardManager
     puts "Card status: #{card_status}"
     puts '---------------------'
   end
+
+  def self.view_products
+    uri = URI.parse('https://shared-sandbox-api.marqeta.com/v3/cardproducts')
+    request = Net::HTTP::Get.new(uri)
+    request.basic_auth('user5281481981491',
+                       '6f9acd4c-a6ac-4fe1-abc4-3e405003be5c')
+    request.content_type = 'application/json'
+
+    req_options = {
+      use_ssl: uri.scheme == 'https'
+    }
+
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(request)
+    end
+
+    # debug only
+    # puts(response.body)
+  end
+
 end
 end
-# CardManager.generate_vcc('72178c75-87a8-4ec9-b82a-390582be0173', '7a5eb9a1-ae55-4f88-8791-aa254130c808')
+# Vccmanager::CardManager.generate_vcc('uuid_1490209263312', '32851ec41d31aba1a157e3481b77f314')
 # CardManager.list_vcc('72178c75-87a8-4ec9-b82a-390582be0173')
 # CardManager.view_vcc('de6bc4f1-9149-4c01-80ef-e2d5594f15e5')
+#Vccmanager::CardManager.view_products
