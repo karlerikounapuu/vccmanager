@@ -31,7 +31,12 @@ module Vccmanager
   	puts "Retrieving information about card product #{pid}..."
   	CardManager.generate_vcc(uid, pid)
   when "2"
-  	puts "Chosen option is 2"
+  	CardManager.list_vcc(uid)
+  	puts "\nTo view virtual card's full details, please provide card token. "
+  	puts "Card token:"
+  	card_token = gets.chomp
+  	puts "Provided card token is #{card_token}. Requesting data..."
+  	CardManager.view_vcc(card_token)
   when "3"
   	puts "Chosen option is 3"
   else

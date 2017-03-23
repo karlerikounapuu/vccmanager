@@ -74,10 +74,13 @@ class CardManager
 
     # debug only
     # puts(response.body)
+    begin
 
     @cards = JSON.parse(response.body)['data']
 
     # Let's fetch data for each VCC generated for user
+
+    puts '---------------------'
 
     @cards.each do |item|
       card_token = item.fetch('token')
@@ -86,13 +89,16 @@ class CardManager
       card_expiry_time = item.fetch('expiration_time')
       card_status = item.fetch('state')
 
-      puts '---------------------'
       puts "Card token: #{card_token}"
       puts "Card number: #{card_number}"
       puts "Expiry: #{card_expiry}"
-      puts "Exact expiration time: #{card_expiry_time}"
+      # puts "Exact expiration time: #{card_expiry_time}"
       puts "Card status: #{card_status}"
       puts '---------------------'
+    end
+    rescue
+      error = (JSON.parse(response.body)).fetch('error_message')
+      puts "Could not list cards. #{error}."
     end
   end
 
@@ -119,6 +125,7 @@ class CardManager
     # debug only
     # puts(response.body)
 
+    begin
     data = JSON.parse(response.body)
     card_number = data.fetch('pan')
     card_expiry = data.fetch('expiration')
@@ -131,6 +138,11 @@ class CardManager
     puts "VCC code: #{card_vcc}"
     puts "Card status: #{card_status}"
     puts '---------------------'
+    rescue
+
+      error = (JSON.parse(response.body)).fetch('error_message')
+      puts "Could not load card information. Reason: #{error}"
+    end
   end
 
   def self.view_products
@@ -155,6 +167,6 @@ class CardManager
 end
 end
 # Vccmanager::CardManager.generate_vcc('uuid_1490209263312', '32851ec41d31aba1a157e3481b77f314')
-# CardManager.list_vcc('72178c75-87a8-4ec9-b82a-390582be0173')
-# CardManager.view_vcc('de6bc4f1-9149-4c01-80ef-e2d5594f15e5')
-#Vccmanager::CardManager.view_products
+# Vccmanager::CardManager.list_vcc('uuid_1490209263312')
+Vccmanager::CardManager.view_vcc('d156ba2c-606a-4a6e-991b-c242904f86fff')
+# Vccmanager::CardManager.view_products
