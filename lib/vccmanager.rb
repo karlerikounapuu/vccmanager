@@ -19,8 +19,7 @@ module Vccmanager
   puts "Welcome back #{customername}! What would you like to do?"
   puts "\n1 - Generate a new virtual card"
   puts "2 - View/Manage existing cards"
-  puts "3 - Delete an existing card"
-  puts "\nPlease select an option: [1/2/3]"
+  puts "\nPlease select an option: [1/2]"
   option = gets.chomp
 
   case option
@@ -37,8 +36,6 @@ module Vccmanager
   	card_token = gets.chomp
   	puts "Provided card token is #{card_token}. Requesting data..."
   	CardManager.view_vcc(card_token)
-  when "3"
-  	puts "Chosen option is 3"
   else
   	puts "Wrong option. "
   end
